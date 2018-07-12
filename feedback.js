@@ -58,7 +58,6 @@ export default class FeedbackForm extends Component {
           </Col>
           <Col>
             <Text>3</Text>
-
           <Radio
           selected={false} />
           </Col>

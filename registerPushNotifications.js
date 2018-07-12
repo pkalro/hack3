@@ -1,6 +1,6 @@
 import { Permissions, Notifications } from 'expo';
+import url from './url';
 
-const PUSH_ENDPOINT = 'http://192.168.43.242:4444/api/register';
 
 async function registerPushNotifications() {
   const { status: existingStatus } = await Permissions.getAsync(
@@ -25,17 +25,17 @@ async function registerPushNotifications() {
   // Get the token that uniquely identifies this device
   let token = await Notifications.getExpoPushTokenAsync();
 
-  
+
 
   // POST the token to your backend server from where you can retrieve it to send push notifications.
-  return fetch(PUSH_ENDPOINT, {
+  return fetch(url.registerDevice, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      token: token
+      deviceId: token
     }),
   });
 }
